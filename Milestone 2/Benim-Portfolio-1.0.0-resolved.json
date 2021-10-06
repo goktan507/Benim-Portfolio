@@ -1,0 +1,635 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "RESTful API for Benim-Portfolio",
+    "version": "1.0.0",
+    "title": "Benim-Portfolio",
+    "contact": {
+      "email": "SBayraktar@my.gcu.edu"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/goktan507/Benim-Portfolio/1.0.0",
+  "tags": [
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/portfolios": {
+      "get": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "pulls all the portfolios in the database",
+        "description": "returns a list of all the portfolios",
+        "operationId": "getAllPortfolios",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "first name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "last name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "gpa",
+            "in": "query",
+            "description": "GPA of the portfolio owner",
+            "required": false,
+            "type": "number",
+            "format": "decimal(3,2)"
+          },
+          {
+            "name": "resume",
+            "in": "query",
+            "description": "Link for the portfolio owners resume",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          },
+          {
+            "name": "education",
+            "in": "query",
+            "description": "Education information of the portfolio owner such as the University and Major that was/being studied.",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned all portfolios!",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "creates a portfolio row in the database",
+        "description": "returns the created portfolio",
+        "operationId": "createPortfolio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "first name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "last name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "gpa",
+            "in": "query",
+            "description": "GPA of the portfolio owner",
+            "required": false,
+            "type": "number",
+            "format": "decimal(3,2)"
+          },
+          {
+            "name": "resume",
+            "in": "query",
+            "description": "Link for the portfolio owners resume",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          },
+          {
+            "name": "education",
+            "in": "query",
+            "description": "Education information of the portfolio owner such as the University and Major that was/being studied.",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created portfolio with portfolio ID = {id}!",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portfolios/:id": {
+      "put": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "updates the portfolio row with the given id in the database",
+        "description": "returns the updated portfolio",
+        "operationId": "updatePortfolio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "first name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "last name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "gpa",
+            "in": "query",
+            "description": "GPA of the portfolio owner",
+            "required": false,
+            "type": "number",
+            "format": "decimal(3,2)"
+          },
+          {
+            "name": "resume",
+            "in": "query",
+            "description": "Link for the portfolio owners resume",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          },
+          {
+            "name": "education",
+            "in": "query",
+            "description": "Education information of the portfolio owner such as the University and Major that was/being studied.",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated portfolio with portfolio ID = {id}!",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "deletes a portfolio row with the given id in the database",
+        "description": "return is not required",
+        "operationId": "deletePortfolio",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "first_name",
+            "in": "query",
+            "description": "first name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "last_name",
+            "in": "query",
+            "description": "last name of the portfolio owner",
+            "required": false,
+            "type": "string",
+            "maximum": 45,
+            "format": "varchar"
+          },
+          {
+            "name": "gpa",
+            "in": "query",
+            "description": "GPA of the portfolio owner",
+            "required": false,
+            "type": "number",
+            "format": "decimal(3,2)"
+          },
+          {
+            "name": "resume",
+            "in": "query",
+            "description": "Link for the portfolio owners resume",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          },
+          {
+            "name": "education",
+            "in": "query",
+            "description": "Education information of the portfolio owner such as the University and Major that was/being studied.",
+            "required": false,
+            "type": "string",
+            "maximum": 200,
+            "format": "varchar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted portfolio with portfolio ID = {id}!",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "pulls all the skills stored in the database",
+        "description": "returns all the skills",
+        "operationId": "getAllSkills",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skillsID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "description": "years of experience of the skill",
+            "required": false,
+            "type": "number",
+            "maximum": 45,
+            "format": "int32"
+          },
+          {
+            "name": "skill_description",
+            "in": "query",
+            "description": "description of the skill",
+            "required": false,
+            "type": "string",
+            "maximum": 255,
+            "format": "varchar"
+          },
+          {
+            "name": "portfolio_portfolioID",
+            "in": "query",
+            "description": "identifies the association of the skills table with the portfolio table",
+            "required": false,
+            "type": "number",
+            "format": "int"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned all the skills!",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skills"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "creates skills row in the database",
+        "description": "returns created skills",
+        "operationId": "createSkills",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skillsID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "description": "years of experience of the skill",
+            "required": false,
+            "type": "number",
+            "maximum": 45,
+            "format": "int32"
+          },
+          {
+            "name": "skill_description",
+            "in": "query",
+            "description": "description of the skill",
+            "required": false,
+            "type": "string",
+            "maximum": 255,
+            "format": "varchar"
+          },
+          {
+            "name": "portfolio_portfolioID",
+            "in": "query",
+            "description": "identifies the association of the skills table with the portfolio table",
+            "required": false,
+            "type": "number",
+            "format": "int"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Created the skills with the skillsID = {id}",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skills"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills/:id": {
+      "put": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "Updates the skills with the given id in the database",
+        "description": "returns updated skills model",
+        "operationId": "updateSkills",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skillsID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "description": "years of experience of the skill",
+            "required": false,
+            "type": "number",
+            "maximum": 45,
+            "format": "int32"
+          },
+          {
+            "name": "skill_description",
+            "in": "query",
+            "description": "description of the skill",
+            "required": false,
+            "type": "string",
+            "maximum": 255,
+            "format": "varchar"
+          },
+          {
+            "name": "portfolio_portfolioID",
+            "in": "query",
+            "description": "identifies the association of the skills table with the portfolio table",
+            "required": false,
+            "type": "number",
+            "format": "int"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated the skills with the ID = {id}",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skills"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Skills"
+        ],
+        "summary": "deletes the skills with the given id in the database",
+        "description": "return is not required",
+        "operationId": "deleteSkills",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "skillsID",
+            "in": "query",
+            "description": "identity of the table (unique)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "description": "years of experience of the skill",
+            "required": false,
+            "type": "number",
+            "maximum": 45,
+            "format": "int32"
+          },
+          {
+            "name": "skill_description",
+            "in": "query",
+            "description": "description of the skill",
+            "required": false,
+            "type": "string",
+            "maximum": 255,
+            "format": "varchar"
+          },
+          {
+            "name": "portfolio_portfolioID",
+            "in": "query",
+            "description": "identifies the association of the skills table with the portfolio table",
+            "required": false,
+            "type": "number",
+            "format": "int"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted the skills with ID = {id}",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skills"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Portfolio": {
+      "type": "object",
+      "required": [
+        "education",
+        "first_name",
+        "gpa",
+        "last_name",
+        "portfolioID",
+        "resume"
+      ],
+      "properties": {
+        "portfolioID": {
+          "type": "number",
+          "format": "long",
+          "example": 1
+        },
+        "first_name": {
+          "type": "string",
+          "example": "Safa"
+        },
+        "last_name": {
+          "type": "string",
+          "example": "Bayraktar"
+        },
+        "gpa": {
+          "type": "number",
+          "example": 3.76
+        },
+        "resume": {
+          "type": "string",
+          "format": "url",
+          "example": "https://www.linkedin.com/in/safabayraktar"
+        },
+        "education": {
+          "type": "string",
+          "example": "Grand Canyon University, current senior, Software development Major"
+        }
+      }
+    },
+    "Skills": {
+      "required": [
+        "experience",
+        "portfolio_portfolioid",
+        "skill_description",
+        "skillsID"
+      ],
+      "properties": {
+        "skillsID": {
+          "type": "number",
+          "format": "long",
+          "example": 1
+        },
+        "experience": {
+          "type": "number",
+          "format": "int32",
+          "example": 3
+        },
+        "skill_description": {
+          "type": "string",
+          "format": "varchar",
+          "example": "Java Spring Boot"
+        },
+        "portfolio_portfolioid": {
+          "type": "number",
+          "format": "long",
+          "example": 1
+        }
+      }
+    }
+  }
+}
