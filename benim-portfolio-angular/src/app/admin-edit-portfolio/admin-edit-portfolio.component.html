@@ -1,0 +1,37 @@
+<div style="padding-top: 55px;">
+    <app-navbar></app-navbar>
+    
+    <div class="container" style="margin-left:15%; margin-top: 5%; padding:1px 16px;">
+        <h2 style="text-align: center; margin-left: -10%">Edit Portfolio</h2><br>
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)" style="width: 30%;margin-left:30%">
+            <div class="form-group">
+                <input type="hidden" class="form-control" formControlName="portfolioID" [(ngModel)]="portfolio.portfolioID">
+            </div><br />
+            
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="portfolio.firstName">
+            </div><br />
+
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="portfolio.lastName">
+            </div><br />
+
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="gpa" [(ngModel)]="portfolio.gpa">
+            </div><br />
+
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="resume" [(ngModel)]="portfolio.resume">
+            </div><br />
+
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="education"
+                [(ngModel)]="portfolio.education">
+            </div><br /><br />
+
+            <div align="center">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

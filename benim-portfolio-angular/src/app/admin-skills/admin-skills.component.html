@@ -1,0 +1,21 @@
+<div style="padding-top: 55px;">
+    <app-navbar></app-navbar>
+
+    <div class="container" style="margin-left:15%; margin-top: 5%; padding:1px 16px;">
+        <div class="container">
+            <fa-icon style="margin-left: 50%;" [icon]="addIcon" size="3x" (click)="addSkills()"></fa-icon>
+            <div class="card mb-3" style="margin: 5%;" *ngFor="let skill of skills ">
+                <div class="card-body">
+                    <h5 class="card-title">{{ skill.skill_description }}</h5>
+                    <p class="card-text">{{ skill.experience }} years</p>
+                    <div>
+                        <fa-icon style="margin: 10px;" [icon]="editIcon" (click)="editSkills(skill)"></fa-icon>
+                        <fa-icon style="margin: 10px;" [icon]="deleteIcon" (click)="deleteSkills(skill.skillsID)">
+                        </fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

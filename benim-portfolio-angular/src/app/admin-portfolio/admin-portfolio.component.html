@@ -1,0 +1,22 @@
+<div style="padding-top: 55px;">
+    <app-navbar></app-navbar>
+    
+    <div class="container" style="margin-left:15%; margin-top: 5%; padding:1px 16px;">
+        <div class="container">
+            <fa-icon style="margin-left: 50%;" [icon]="addIcon" size="3x" (click)="addPortfolio()"></fa-icon>
+            <div class="card mb-3" style="margin: 5%;" *ngFor="let portfolio of portfolios ">
+                <div class="card-body">
+                    <h5 class="card-title">{{ portfolio.firstName }} {{portfolio.lastName }}</h5>
+                    <p class="card-text">{{ portfolio.education }}</p>
+                    <p class="card-text"><small class="text-muted">GPA: {{ portfolio.gpa }} </small></p>
+                    <div>
+                        <fa-icon style="margin: 10px;" [icon]="editIcon" (click)="editPortfolio(portfolio)"></fa-icon>
+                        <fa-icon style="margin: 10px;" [icon]="deleteIcon" (click)="deletePortfolio(portfolio.portfolioID)"></fa-icon>
+                    </div>
+                </div>
+                <img class="card-img-top" src={{portfolio.resume}} alt="...">
+            </div>
+        </div>
+
+    </div>
+</div>
